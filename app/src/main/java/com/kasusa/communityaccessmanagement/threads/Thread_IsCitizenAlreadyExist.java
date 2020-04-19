@@ -1,8 +1,5 @@
 package com.kasusa.communityaccessmanagement.threads;
-
 import android.util.Log;
-
-import com.kasusa.communityaccessmanagement.LoginActivity;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
 
@@ -13,7 +10,6 @@ public class Thread_IsCitizenAlreadyExist implements Runnable {
 
     public Thread_IsCitizenAlreadyExist(String citizenid) {
         id = citizenid;
-
     }
 
     public void run() {
