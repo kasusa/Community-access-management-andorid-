@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
 import com.kasusa.communityaccessmanagement.util.citizenID;
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,8 +42,12 @@ public class LoginActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "身份证错误,请核实身份证号", Toast.LENGTH_SHORT);
             toast.show();
         }else {
-            Toast toast = Toast.makeText(this, "进入正常流程", Toast.LENGTH_SHORT);
-            toast.show();
+            boolean citizenidExist = MySQLutil.IsCitizenidAlreadyExist(id);
+            if(citizenidExist){
+//                login_pwd
+            }else {
+//                register
+            }
         }
 
     }

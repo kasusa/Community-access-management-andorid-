@@ -24,6 +24,10 @@ android {
 }
 
 dependencies {
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
