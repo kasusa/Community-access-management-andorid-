@@ -13,6 +13,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/lift_on_touch"
         app:cardCornerRadius="2dp"
+        android:onClick="jump_login"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +26,6 @@
             android:layout_height="wrap_content"
 
             android:contentDescription="TODO"
-            android:onClick="jump_login"
             app:srcCompat="@drawable/login_btn" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

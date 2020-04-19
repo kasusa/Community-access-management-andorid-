@@ -3,5 +3,6 @@
 
     <string name="topBar_welcome">居民出入管理</string>
     <string name="topBar_login">输入您的身份证号</string>
+    <string name="topBar_login_pwd">输入您的密码</string>
 
 </resources>
