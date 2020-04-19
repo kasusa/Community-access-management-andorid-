@@ -3,7 +3,9 @@ package com.kasusa.communityaccessmanagement;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,6 +62,14 @@ public class LoginPwdActivity extends AppCompatActivity {
 //            pwd is right logic
                 Toast toast = Toast.makeText(this, "登录中...", Toast.LENGTH_SHORT);
                 toast.show();
+                //put citizen id in shared perference
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("citizenID", id);
+                editor.commit();
+                Toast.makeText(this, "登录成功,以后无需重复登录！",Toast.LENGTH_LONG).show();
+
+
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 this.finish();
