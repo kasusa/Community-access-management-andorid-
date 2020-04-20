@@ -60,14 +60,12 @@ public class LoginPwdActivity extends AppCompatActivity {
             boolean pwdIsRight = Dataclass.boolanswer;
             if(pwdIsRight){
 //            pwd is right logic
-                Toast toast = Toast.makeText(this, "登录中...", Toast.LENGTH_SHORT);
-                toast.show();
                 //put citizen id in shared perference
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("citizenID", id);
                 editor.commit();
-                Toast.makeText(this, "登录成功,以后无需重复登录！",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "登录成功 ！",Toast.LENGTH_LONG).show();
 
 
                 Intent intent = new Intent(this, HomeActivity.class);
