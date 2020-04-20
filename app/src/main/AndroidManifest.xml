@@ -11,9 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MeActivity"
+        <activity android:name=".RegisterOptionalActivity"
+            android:label="@string/topBar_register2"
+            ></activity>
+        <activity
+            android:name=".RegisterMustHaveActivity"
+            android:label="@string/topBar_register1" />
+        <activity
+            android:name=".MeActivity"
             android:label="@string/topBar_me"
-            android:parentActivityName=".HomeActivity"></activity>
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/topBar_Home" />

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
 import com.kasusa.communityaccessmanagement.threads.Thread_IsCitizenAlreadyExist;
@@ -52,8 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             Dataclass.reset();
             Thread_IsCitizenAlreadyExist t = new Thread_IsCitizenAlreadyExist(id);
             t.start();
-            Toast toast = Toast.makeText(this, "查询远程数据库中", Toast.LENGTH_SHORT);
-            toast.show();
+
             // 线程未完成数据拿的时候等待.
             while (!Dataclass.threadDone)
                 Thread.sleep(500);
@@ -62,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
 
             boolean citizenidExist = Dataclass.IsCitizenAlreadyExist;
             if(citizenidExist){
+                Toast toast = Toast.makeText(this, "您已经注册过了,请登录", Toast.LENGTH_SHORT);
+                toast.show();
+//                already registered
                 Intent s = new Intent(this, LoginPwdActivity.class);
                 String message = editText1.getText().toString();
                 s.putExtra(EXTRA_MESSAGE, message);
@@ -69,7 +72,17 @@ public class LoginActivity extends AppCompatActivity {
                 this.finish();
 
             }else {
-//                register
+                Toast toast = Toast.makeText(this, "您还未注册过了,请先注册", Toast.LENGTH_SHORT);
+                toast.show();
+//              goto  register activity
+                Intent s = new Intent(this, RegisterMustHaveActivity.class);
+                String message = editText1.getText().toString();
+//                put id in DATAuserinfo
+                DataUserinfo.user_citizenID = id;
+                Log.println(Log.INFO,"meow","将id存入Datauserinfo : \n" +
+                        DataUserinfo.to_static_String());
+                startActivity(s);
+                this.finish();
             }
         }
 

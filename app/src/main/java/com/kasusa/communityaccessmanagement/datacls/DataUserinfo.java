@@ -12,21 +12,20 @@ import com.kasusa.communityaccessmanagement.util.citizenID;
 import java.util.Map;
 
 public class DataUserinfo {
-    public static String user_avtarlink;
-
-    public static String citizen_name;
-    public static String citizen_gender;
-    public static String age;
-    public static String user_citizenID ;
-    public static String user_xiaoqu;
-
-    public static String user_phone;
-    public static String user_email;
-    public static String user_note;
+    public static String user_avtarlink = "";
+    public static String citizen_name = "";
+    public static String citizen_gender = "";
+    public static String age = "";
+    public static String user_citizenID  = "";
+    public static String user_xiaoqu = "";
+    public static String user_phone = "";
+    public static String user_email = "";
+    public static String user_note = "";
+    public static String user_pwd = "";
 
     /**
      * using citizenId  to get all info from mysql using  a thread
-     * @return true if can get result
+     *
      */
     public static void Init(String id) throws InterruptedException {
         boolean ans = false;
@@ -49,6 +48,28 @@ public class DataUserinfo {
         // (线程结束
     }
 
+    /**
+     * 通过 Datauserinfo class 里面的 citizenid 生成性别和年龄 ,用于插入表
+     * @throws InterruptedException wait
+     */
+    public static void InitZer0 () throws InterruptedException {
+        Map<String, String> BirAgeSex =
+                citizenID.getBirAgeSex(user_citizenID);
+        age = BirAgeSex.get("age");
+        citizen_gender =  BirAgeSex.get("sexCode");
+
+        if (citizen_gender.equals("F")){
+            citizen_gender = "女";
+        }else {
+            citizen_gender = "男";
+        }
+        Log.println(Log.INFO,"meow","通过citizenid生成 Datauserinfo : \n" +
+                DataUserinfo.to_static_String());
+    }
+
+    /**
+     * erase all info in DataUserinfo class
+     */
     public static void Clean() {
         user_avtarlink = "" ;
         citizen_name = "" ;
@@ -59,16 +80,22 @@ public class DataUserinfo {
         user_phone = "" ;
         user_email = "" ;
         user_note = "" ;
+        user_pwd = "";
         Log.println(Log.INFO,"meow","DataUserInfo 已经清空：");
     }
 
+    /**
+     * use this to see what is in datauserinfo class
+     * @return out put str
+     */
     public static String to_static_String() {
         return "user_avtarlink:" +user_avtarlink+"\n"+
                 "citizen_name:" +citizen_name+"\n"+
                 "citizen_gender:" +citizen_gender+"\n"+
                 "age:" +age+"\n"+
                 "user_citizenID:" +user_citizenID+"\n"+
-                "user_xiaoqu:"+user_xiaoqu ;
+                "user_xiaoqu:"+user_xiaoqu +"\n"+
+                "user_pwd:"+user_pwd;
     }
 
 }
