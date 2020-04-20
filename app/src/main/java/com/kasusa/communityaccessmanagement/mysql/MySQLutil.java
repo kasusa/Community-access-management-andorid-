@@ -10,7 +10,7 @@ public class MySQLutil{
 
     //    ip :123.56.18.36
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://123.56.18.36:3306/andorid-2020-spring?useSSL=false&serverTimezone=Asia/Shanghai";
+    static final String DB_URL = "jdbc:mysql://123.56.18.36:3306/andorid-2020-spring?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8";
     static final String USER = "root";
     static final String PASS = "Jinghaoyang1";
 
@@ -140,7 +140,8 @@ public class MySQLutil{
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
             // 执行查询
-            System.out.println(" 实例化Statement对象...");
+            Log.println(Log.INFO,"meow","sql 获取user信息测试中 !");
+
 
             stmt = conn.createStatement();
             String sql = "SELECT citizen_name,citizen_gender, \n" +
@@ -192,6 +193,57 @@ public class MySQLutil{
             }
         }
         System.out.println("Goodbye!");
+    }
+
+    /**
+     * insert a user using data from DataUserInfo
+     */
+//    TODO xiaoqu did not set
+    public static void UserRegisterOperation() {
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql1 = "INSERT INTO citizen ( citizenID, citizen_name,citizen_gender )\n" +
+                    "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.citizen_name+"','"+DataUserinfo.citizen_gender+"' );";
+            int a = stmt.executeUpdate(sql1);
+            System.out.println("成功插入citizen表条数: "+ a);
+            String sql2 = "INSERT INTO `user` ( user_citizenID, user_email,user_phone,user_pwd,user_avtarlink,user_note )\n" +
+                    "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.user_email+"','"+DataUserinfo.user_phone+"'," +
+                    "'"+DataUserinfo.user_pwd+"','"+DataUserinfo.user_avtarlink+"','"+DataUserinfo.user_note+"' );";
+            a = stmt.executeUpdate(sql2);
+            System.out.println("成功插入user表条数: "+ a);
+
+
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
     }
 
 }

@@ -35,7 +35,7 @@ public class DataUserinfo {
         age = BirAgeSex.get("age");
 
         // thread mysql get all information
-        // 这里开始处理 如果身份证符合规则,判断是否存在于mysql的citizen表中. (新建线程
+        // (新建线程
         Dataclass.reset();
         Thread_getUserInfo t = new Thread_getUserInfo(id);
         t.start();
@@ -62,6 +62,7 @@ public class DataUserinfo {
             citizen_gender = "女";
         }else {
             citizen_gender = "男";
+
         }
         Log.println(Log.INFO,"meow","通过citizenid生成 Datauserinfo : \n" +
                 DataUserinfo.to_static_String());
