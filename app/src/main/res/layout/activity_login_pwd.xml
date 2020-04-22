@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginPwdActivity">
+    tools:context=".activity_Login.LoginPwdActivity">
 
     <EditText
         android:id="@+id/editText3"
@@ -55,9 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:onClick="jump_FindPwd"
         android:text="我忘记了密码"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@drawable/selector_text_press_color"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
@@ -69,8 +70,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="我输错了身份证"
+        android:onClick="jump_login"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+              android:textColor="@drawable/selector_text_press_color"
+
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />

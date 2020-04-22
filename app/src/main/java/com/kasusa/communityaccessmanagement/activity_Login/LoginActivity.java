@@ -1,4 +1,4 @@
-package com.kasusa.communityaccessmanagement;
+package com.kasusa.communityaccessmanagement.activity_Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,13 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kasusa.communityaccessmanagement.R;
+import com.kasusa.communityaccessmanagement.RegisterMustHaveActivity;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
-import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
 import com.kasusa.communityaccessmanagement.threads.Thread_IsCitizenAlreadyExist;
 import com.kasusa.communityaccessmanagement.util.citizenID;
-
-import java.net.IDN;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "YOUR_PACKAGE_NAME.MESSAGE";

@@ -9,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.kasusa.communityaccessmanagement.activity_Login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
 

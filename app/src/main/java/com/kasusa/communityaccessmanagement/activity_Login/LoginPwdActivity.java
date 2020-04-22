@@ -1,4 +1,4 @@
-package com.kasusa.communityaccessmanagement;
+package com.kasusa.communityaccessmanagement.activity_Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kasusa.communityaccessmanagement.HomeActivity;
+import com.kasusa.communityaccessmanagement.R;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.threads.Thread_IspwdRight;
 
@@ -79,5 +81,16 @@ public class LoginPwdActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void jump_FindPwd(View view) {
+        Intent intent = new Intent(this, FindMyPwdActivity.class);
+        startActivity(intent);
+    }
+
+    public void jump_login(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }
