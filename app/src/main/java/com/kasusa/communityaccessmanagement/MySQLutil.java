@@ -6,6 +6,8 @@ import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 public class MySQLutil{
@@ -203,7 +205,6 @@ public class MySQLutil{
      * insert in user as in sql2
      * insert in link as in sql3
      */
-//    TODO xiaoqu did not set
     public static void UserRegisterOperation() {
         Connection conn = null;
         Statement stmt = null;
@@ -221,14 +222,25 @@ public class MySQLutil{
             String sql1 = "INSERT INTO citizen ( citizenID, citizen_name,citizen_gender )\n" +
                     "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.citizen_name+"','"+DataUserinfo.citizen_gender+"' );";
             int a = stmt.executeUpdate(sql1);
-
             System.out.println("成功插入citizen表条数: "+ a);
+            Log.println(Log.INFO,"meow","成功插入citizen表条数"+a);
+
             String sql2 = "INSERT INTO `user` ( user_citizenID, user_email,user_phone,user_pwd,user_avtarlink,user_note )\n" +
                     "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.user_email+"','"+DataUserinfo.user_phone+"'," +
                     "'"+DataUserinfo.user_pwd+"','"+DataUserinfo.user_avtarlink+"','"+DataUserinfo.user_note+"' );";
             a = stmt.executeUpdate(sql2);
             System.out.println("成功插入user表条数: "+ a);
+            Log.println(Log.INFO,"meow","成功插入user表条数"+a);
 
+
+            java.util.Date dNow = new Date( );
+            SimpleDateFormat timeYYMMDD = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+            String sql3 = "INSERT into `link` (citizenid,xiaoquid,buliding,unit,room,register_time)\n" +
+                    "VALUES\n" +
+                    "('"+DataUserinfo.user_citizenID+"',"+DataUserinfo.xiaoqu_id+",'"+
+                    DataUserinfo.building+"','"+DataUserinfo.unit+"','"+DataUserinfo.room+"','"+timeYYMMDD.format(dNow)+"')";
+            a = stmt.executeUpdate(sql3);
+            Log.println(Log.INFO,"meow","成功插入link表条数"+a);
 
             stmt.close();
             conn.close();
@@ -243,8 +255,7 @@ public class MySQLutil{
             try{
                 if(stmt!=null) stmt.close();
             }catch(SQLException se2){
-            }// 什么都不做
-            try{
+            }/* 什么都不做*/try{
                 if(conn!=null) conn.close();
             }catch(SQLException se){
                 se.printStackTrace();

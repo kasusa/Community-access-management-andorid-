@@ -70,6 +70,7 @@
         app:layout_constraintStart_toEndOf="@+id/button8" />
 
     <Button
+        android:onClick="jump_selectxiaoqu"
         android:id="@+id/button8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="填写细节信息:"
+        android:text="确定是住在这个小区吗 : 请填写 楼号 单元号 房间"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

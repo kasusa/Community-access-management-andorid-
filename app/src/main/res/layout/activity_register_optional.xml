@@ -104,7 +104,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="register_btn"
-        android:text="提交并登入"
+        android:text="下一步"
         app:layout_constraintStart_toStartOf="@+id/editText6"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
 

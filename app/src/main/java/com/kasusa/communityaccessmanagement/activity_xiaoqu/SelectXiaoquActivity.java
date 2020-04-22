@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,8 +27,20 @@ public class SelectXiaoquActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_xiaoqu);
-
         mRecyclerView = findViewById(R.id.recyclerView);
+        //        跨activity关闭监听器
+        BroadcastReceiver broadcast_reciever = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context arg0, Intent intent) {
+                String action = intent.getAction();
+                if (action.equals("finish")) {
+//finishing the activity
+                    finish();
+                }
+            }
+        };
+        registerReceiver(broadcast_reciever, new IntentFilter("finish"));
 
 
         try {

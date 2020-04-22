@@ -23,6 +23,13 @@ public class DataUserinfo {
     public static String user_note = "";
     public static String user_pwd = "";
 
+    public static Long   xiaoqu_id = new Long(0);
+    public static String building = "";
+    public static String unit = "";
+    public static String room = "";
+
+
+
     /**
      * using citizenId  to get all info from mysql using  a thread
      *
@@ -82,6 +89,10 @@ public class DataUserinfo {
         user_email = "" ;
         user_note = "" ;
         user_pwd = "";
+        xiaoqu_id = new Long(0);
+        building = "";
+        unit = "";
+        room = "";
         Log.println(Log.INFO,"meow","DataUserInfo 已经清空：");
     }
 
@@ -95,8 +106,13 @@ public class DataUserinfo {
                 "citizen_gender:" +citizen_gender+"\n"+
                 "age:" +age+"\n"+
                 "user_citizenID:" +user_citizenID+"\n"+
+                "user_pwd:"+user_pwd+"\n"+
                 "user_xiaoqu:"+user_xiaoqu +"\n"+
-                "user_pwd:"+user_pwd;
+       "xiaqu id:"+ xiaoqu_id +"\n"+
+       "buil:"+ building +"\n"+
+       "unit:"+ unit +"\n"+
+       "user_note:"+ user_note +"\n"+
+        "room:"+ room ;
     }
 
 }
