@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
-import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
+import com.kasusa.communityaccessmanagement.MySQLutil;
 
 public class Thread_getUserInfo implements Runnable {
     private Thread t;

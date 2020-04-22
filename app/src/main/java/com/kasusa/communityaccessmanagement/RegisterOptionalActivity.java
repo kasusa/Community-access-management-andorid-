@@ -50,7 +50,7 @@ public class RegisterOptionalActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * 提交并登陆按钮
      * @param view
      */
     public void register_btn(View view) {
@@ -59,6 +59,7 @@ public class RegisterOptionalActivity extends AppCompatActivity {
         String avtarurl = "";
         email = et_email.getText().toString();
         note = et_note.getText().toString();
+        //TODO 头像
 //        avtarurl = et_pwd1.getText().toString();
         if(email.equals("")) Toast.makeText(this, "请填写email", Toast.LENGTH_SHORT).show();
 //        else if(avtarurl.equals("")) Toast.makeText(this, "请上传一张您的照片", Toast.LENGTH_SHORT).show();
@@ -66,13 +67,11 @@ public class RegisterOptionalActivity extends AppCompatActivity {
             DataUserinfo.user_email = email;
             DataUserinfo.user_avtarlink = avtarurl;
 //            sql update stuff
-            // 这里开始处理 如果身份证符合规则,判断是否存在于mysql的citizen表中. (新建线程
             Dataclass.reset();
             Thread_NewUserinsert1 t = new Thread_NewUserinsert1();
             t.start();
             Toast toast = Toast.makeText(this, "注册成功!", Toast.LENGTH_SHORT);
             toast.show();
-            // 线程未完成数据拿的时候等待.
             while (!Dataclass.threadDone) {
                 try {
                     Thread.sleep(500);

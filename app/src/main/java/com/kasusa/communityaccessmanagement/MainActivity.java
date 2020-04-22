@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.kasusa.communityaccessmanagement.activity_Login.LoginActivity;
+import com.kasusa.communityaccessmanagement.activity_xiaoqu.SelectXiaoquActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(s);
             this.finish();
         }
+
+//        startActivity(new Intent(this, SelectXiaoquActivity.class));
     }
 
     /**

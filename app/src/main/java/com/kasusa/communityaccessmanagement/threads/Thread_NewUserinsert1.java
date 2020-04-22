@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
-import com.kasusa.communityaccessmanagement.mysql.MySQLutil;
+import com.kasusa.communityaccessmanagement.MySQLutil;
 
 /**
  * 填写好了全部信息(除了小区) 进行注册

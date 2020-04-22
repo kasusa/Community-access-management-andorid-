@@ -1,10 +1,12 @@
-package com.kasusa.communityaccessmanagement.mysql;
+package com.kasusa.communityaccessmanagement;
 
 import android.util.Log;
 
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
+import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 
 import java.sql.*;
+import java.util.LinkedList;
 
 public class MySQLutil{
 
@@ -197,6 +199,9 @@ public class MySQLutil{
 
     /**
      * insert a user using data from DataUserInfo
+     * insert in citizen as sql1
+     * insert in user as in sql2
+     * insert in link as in sql3
      */
 //    TODO xiaoqu did not set
     public static void UserRegisterOperation() {
@@ -216,6 +221,7 @@ public class MySQLutil{
             String sql1 = "INSERT INTO citizen ( citizenID, citizen_name,citizen_gender )\n" +
                     "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.citizen_name+"','"+DataUserinfo.citizen_gender+"' );";
             int a = stmt.executeUpdate(sql1);
+
             System.out.println("成功插入citizen表条数: "+ a);
             String sql2 = "INSERT INTO `user` ( user_citizenID, user_email,user_phone,user_pwd,user_avtarlink,user_note )\n" +
                     "VALUES( '"+DataUserinfo.user_citizenID+"', '"+DataUserinfo.user_email+"','"+DataUserinfo.user_phone+"'," +
@@ -244,6 +250,73 @@ public class MySQLutil{
                 se.printStackTrace();
             }
         }
+    }
+
+    /** get xiaoqu info and return a linklist have all data
+     * @return LinkedList<xiaoqu> , return null if no xiaoqu exist
+     */
+    public static LinkedList<xiaoqu> getXiaoquList() {
+        LinkedList<xiaoqu> xiaoquList = new LinkedList<>();
+        Connection conn = null;
+        Statement stmt = null;
+        boolean noxiaoquExist = true;
+
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT xiaoquID, xiaoqu_name , area_name ,area_city ,area_province" +
+                    " FROM xiaoqu , area WHERE xiaoqu_area_id = areaID;";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // 展开结果集数据库
+            while(rs.next()){
+                // 通过字段检索
+                Long id = rs.getLong("xiaoquID");
+                String name = rs.getString("xiaoqu_name");
+                String area = rs.getString("area_name");
+                String city = rs.getString("area_city");
+                String prov = rs.getString("area_province");
+                xiaoqu xq = new xiaoqu(id,name,area,city,prov);
+                xiaoquList.addLast(xq);
+                System.out.println(xq.toString());
+                noxiaoquExist = false;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+        if (noxiaoquExist){
+            return null;
+        }else
+            return xiaoquList;
     }
 
 

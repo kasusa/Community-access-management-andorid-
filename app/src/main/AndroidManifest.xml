@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectXiaoquActivity"></activity>
+        <activity android:name=".activity_xiaoqu.MakeSureXiaoquActivity"
+            android:label="@string/topBar_Mksure_xiaoqu"
+            ></activity>
+        <activity
+            android:name=".activity_xiaoqu.SelectXiaoquActivity"
+            android:label="@string/topBar_SelectXiaoqu" />
         <activity
             android:name=".activity_Login.FindMyPwdActivity"
             android:label="@string/topBar_findpwd"

@@ -9,6 +9,8 @@
     <string name="topBar_register1">必填信息</string>
     <string name="topBar_register2">可选信息</string>
     <string name="topBar_findpwd">找回密码</string>
+    <string name="topBar_SelectXiaoqu">选择您所在的小区</string>
+    <string name="topBar_Mksure_xiaoqu">确认小区</string>
 
 
 </resources>
