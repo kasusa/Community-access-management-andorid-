@@ -11,6 +11,8 @@
     <string name="topBar_findpwd">找回密码</string>
     <string name="topBar_SelectXiaoqu">选择您所在的小区</string>
     <string name="topBar_Mksure_xiaoqu">确认小区</string>
+    <string name="topBar_chooseQR">选择出入方向</string>
+    <string name="topBar_QRoutput">信息录入结果</string>
 
 
 </resources>

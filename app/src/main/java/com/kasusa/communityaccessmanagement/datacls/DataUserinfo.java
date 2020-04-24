@@ -102,10 +102,10 @@ public class DataUserinfo {
      */
     public static String to_static_String() {
         return "user_avtarlink:" +user_avtarlink+"\n"+
+                "user_citizenID:" +user_citizenID+"\n"+
                 "citizen_name:" +citizen_name+"\n"+
                 "citizen_gender:" +citizen_gender+"\n"+
                 "age:" +age+"\n"+
-                "user_citizenID:" +user_citizenID+"\n"+
                 "user_pwd:"+user_pwd+"\n"+
                 "user_xiaoqu:"+user_xiaoqu +"\n"+
        "xiaqu id:"+ xiaoqu_id +"\n"+

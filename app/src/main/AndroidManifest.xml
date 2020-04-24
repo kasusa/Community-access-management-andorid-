@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kasusa.communityaccessmanagement">
+    <!-- mysql need -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- qrcode need -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +21,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_xiaoqu.MakeSureXiaoquActivity"
-            android:label="@string/topBar_Mksure_xiaoqu"
+        <activity android:name=".ScanOutputActivity"
+            android:label="@string/topBar_QRoutput"
+            android:parentActivityName=".HomeActivity"
             ></activity>
+        <activity
+            android:name=".ScanChooseActivity"
+            android:label="@string/topBar_chooseQR"
+            android:parentActivityName=".HomeActivity"/>
+        <activity
+            android:name=".activity_xiaoqu.MakeSureXiaoquActivity"
+            android:label="@string/topBar_Mksure_xiaoqu" />
         <activity
             android:name=".activity_xiaoqu.SelectXiaoquActivity"
             android:label="@string/topBar_SelectXiaoqu" />

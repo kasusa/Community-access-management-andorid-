@@ -2,6 +2,7 @@ package com.kasusa.communityaccessmanagement;
 
 import android.util.Log;
 
+import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 
@@ -330,6 +331,106 @@ public class MySQLutil{
             return xiaoquList;
     }
 
+    /** Get Xiaoqu From Xiaoqu ID - store in DataScan.xiaoquname
+     * @param xiaoquID use this xiaoqu id to search for name
+     */
+    public static void GetXiaoquFromXiaoquID(Long xiaoquID){
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
 
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM xiaoqu WHERE xiaoquID = '"+xiaoquID+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // 展开结果集数据库
+            while(rs.next()){
+                // 通过字段检索
+                DataScan.xiaoqu_name = rs.getString("xiaoqu_name");
+
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+    }
+
+    /**
+     * insert DataScan data to in_and_out table
+     */
+    public static void Insert_in_out() {
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = " INSERT into in_and_out  (citizen_id,xiaoqu_id,`in`,`out`,action_time)\n" +
+                    "VALUES(\n" +
+                    "'"+ DataUserinfo.user_citizenID +"',\n" +
+                    "'"+DataScan.xiaoqu_id+"',\n" +
+                    ""+DataScan.in+",\n" +
+                    ""+DataScan.out+",\n" +
+                    "'"+DataScan.action_time+"'\n" +
+                    ")\n";
+            stmt.execute(sql);
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            DataScan.sqlfailed = true;
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+    }
 }
