@@ -9,15 +9,18 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.threads.Thread_GetXiaoquFromXiaoquID;
+import com.kasusa.communityaccessmanagement.util.ping;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.common.Constant;
 
 public class HomeActivity extends AppCompatActivity {
+    ImageView imageView_network;
 
 
     // this code is for qr get back info
@@ -28,6 +31,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide(); //<< this
         setContentView(R.layout.activity_home);
+
+        imageView_network = findViewById(R.id.imageView4);
+        CheckNetWorkAndShow();
 
 
         BroadcastReceiver broadcast_reciever = new BroadcastReceiver() {
@@ -42,6 +48,29 @@ public class HomeActivity extends AppCompatActivity {
         registerReceiver(broadcast_reciever, new IntentFilter("finish"));
     }
 
+    /**
+     * check net work connection my ali server and give a visual feed back
+     */
+    private void CheckNetWorkAndShow() {
+        boolean netok = ping.connectTest();
+        Log.println(Log.INFO,"meow","network test ok:"+netok);
+        if (netok)
+            imageView_network.setImageResource(R.drawable.network_good);
+        else imageView_network.setImageResource(R.drawable.network_bad);
+    }
+
+    /**
+     * top bar showing net work connection retest
+     * @param view
+     */
+    public void network_retest_image_btn(View view) {
+        CheckNetWorkAndShow();
+        Toast.makeText(this,"已刷新网络状态", Toast.LENGTH_SHORT).show();
+    }
+    /**
+     * the first card view -- scan QRCODE
+     * @param view
+     */
     public void scanQRcode(View view) {
         //清理扫码信息类,然后开始加信息
         DataScan.clean();
@@ -49,6 +78,13 @@ public class HomeActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CODE_SCAN);
 
     }
+
+    /**
+     * the first card view -- scan QRCODE result
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

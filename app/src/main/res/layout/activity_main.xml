@@ -28,4 +28,15 @@
             android:contentDescription="TODO"
             app:srcCompat="@drawable/login_btn" />
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="network_retest_image_btn_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/network_good" />
 </androidx.constraintlayout.widget.ConstraintLayout>

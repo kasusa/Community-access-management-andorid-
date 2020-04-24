@@ -412,13 +412,9 @@ public class MySQLutil{
             stmt.execute(sql);
             stmt.close();
             conn.close();
-        }catch(SQLException se){
-            DataScan.sqlfailed = true;
-            // 处理 JDBC 错误
-            se.printStackTrace();
         }catch(Exception e){
-            // 处理 Class.forName 错误
             e.printStackTrace();
+            DataScan.sqlfailed = true;
         }finally{
             // 关闭资源
             try{
