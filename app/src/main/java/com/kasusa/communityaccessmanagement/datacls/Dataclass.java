@@ -18,8 +18,10 @@ public class Dataclass {
         IsCitizenAlreadyExist = false;
         threadDone = false;
         boolanswer = false;
-        xiaoqulist.clear();
-        historylist.clear();
+        if (xiaoqulist!= null)
+            xiaoqulist.clear();
+        if (historylist!= null)
+            historylist.clear();
         thexiaoqu = null;
         qurey_citizenID = "";
     }

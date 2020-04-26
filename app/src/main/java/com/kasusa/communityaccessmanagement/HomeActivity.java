@@ -18,6 +18,7 @@ import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.threads.Thread_GetXiaoquFromXiaoquID;
+import com.kasusa.communityaccessmanagement.threads.Thread_getHistoryList;
 import com.kasusa.communityaccessmanagement.util.ping;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.common.Constant;
@@ -120,9 +121,28 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    /**the second card view -- show history
+     * @param view
+     */
     public void history(View view) {
+        //show current user's history on default
+        String id = DataUserinfo.user_citizenID;
+        dosql_getHistoryList(id);
         Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, ShowHistoryActivity.class));
+    }
+    private void dosql_getHistoryList(String id) {
+        Dataclass.reset();
+        Dataclass.qurey_citizenID = id;
+        Thread_getHistoryList t = new Thread_getHistoryList();
+        t.start();
+        while (!Dataclass.threadDone) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public void management(View view) {
 

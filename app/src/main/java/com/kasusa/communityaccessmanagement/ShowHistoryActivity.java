@@ -29,12 +29,7 @@ public class ShowHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_history);
         mRecyclerView = findViewById(R.id.recycleviewhistory);
-        String id = DataUserinfo.user_citizenID;
-        try {
-            dosql_getHistoryList(id);
-        }catch (Exception e){
 
-        }
         //无数据的显示结果:
         if (Dataclass.historylist==null)
         {
@@ -49,17 +44,5 @@ public class ShowHistoryActivity extends AppCompatActivity {
         }
     }
 
-    private void dosql_getHistoryList(String id) {
-        Dataclass.reset();
-        Dataclass.qurey_citizenID = id;
-        Thread_getHistoryList t = new Thread_getHistoryList();
-        t.start();
-        while (!Dataclass.threadDone) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
 }
