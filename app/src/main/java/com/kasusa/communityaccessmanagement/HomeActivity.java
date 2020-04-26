@@ -6,13 +6,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kasusa.communityaccessmanagement.datacls.DataScan;
+import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.threads.Thread_GetXiaoquFromXiaoquID;
 import com.kasusa.communityaccessmanagement.util.ping;
@@ -29,13 +32,14 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().hide(); //<< this
         setContentView(R.layout.activity_home);
-
         imageView_network = findViewById(R.id.imageView4);
         CheckNetWorkAndShow();
-
-
+        // perference里有id的时候直接存入Datauserinfo
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String temp = sharedPreferences.getString("citizenID", "");
+        DataUserinfo.user_citizenID = temp;
+        // 这个BroadcastReceiver 用于退出登录时的接受退出信号
         BroadcastReceiver broadcast_reciever = new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent intent) {
@@ -67,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         CheckNetWorkAndShow();
         Toast.makeText(this,"已刷新网络状态", Toast.LENGTH_SHORT).show();
     }
+
     /**
      * the first card view -- scan QRCODE
      * @param view
@@ -78,7 +83,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CODE_SCAN);
 
     }
-
     /**
      * the first card view -- scan QRCODE result
      * @param requestCode
@@ -119,7 +123,6 @@ public class HomeActivity extends AppCompatActivity {
     public void history(View view) {
 
     }
-
     public void management(View view) {
 
     }

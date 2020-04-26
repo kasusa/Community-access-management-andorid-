@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.kasusa.communityaccessmanagement.activity_Login.LoginActivity;
 import com.kasusa.communityaccessmanagement.activity_xiaoqu.SelectXiaoquActivity;
+import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.util.ping;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             Intent s = new Intent(this, HomeActivity.class);
             startActivity(s);
             this.finish();
+
         }
         else{
             imageView_network  = findViewById(R.id.imageView5);
@@ -63,12 +65,19 @@ public class MainActivity extends AppCompatActivity {
         return ans;
     }
 
+    /**
+     * 跳转登录界面
+     * @param view
+     */
     public void jump_login(View view) {
         Intent s = new Intent(this, LoginActivity.class);
         startActivity(s);
         this.finish();
     }
 
+    /** 网络状态条
+     * @param view
+     */
     public void network_retest_image_btn_main(View view) {
         CheckNetWorkAndShow();
         Toast.makeText(this,"已刷新网络状态", Toast.LENGTH_SHORT).show();

@@ -50,10 +50,6 @@ public class ScanChooseActivity extends AppCompatActivity {
     }
 
     private void dosql() {
-        // 先把SharedPreferences中的citizenid拿出来,一会儿插入in_and_out用到
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String temp = sharedPreferences.getString("citizenID", "");
-        DataUserinfo.user_citizenID = temp;
 
         Dataclass.reset();
         Thread_Insert_in_out t = new Thread_Insert_in_out();
