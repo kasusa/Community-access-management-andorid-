@@ -7,7 +7,10 @@ public class Dataclass {
     public static  boolean threadDone = false;
     public static  boolean boolanswer = false;
     public static String id = "";
+    public static String qurey_citizenID = "";
+
     public static LinkedList<xiaoqu> xiaoqulist = new LinkedList<>();
+    public static LinkedList<history> historylist = new LinkedList<>();
     public static xiaoqu thexiaoqu = null;
 
 
@@ -16,7 +19,9 @@ public class Dataclass {
         threadDone = false;
         boolanswer = false;
         xiaoqulist.clear();
+        historylist.clear();
         thexiaoqu = null;
+        qurey_citizenID = "";
     }
     public static void threadDone(){
         threadDone = true;

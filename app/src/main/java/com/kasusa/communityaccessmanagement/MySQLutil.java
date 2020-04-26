@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
+import com.kasusa.communityaccessmanagement.datacls.Dataclass;
+import com.kasusa.communityaccessmanagement.datacls.history;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 
 import java.sql.*;
@@ -428,5 +430,80 @@ public class MySQLutil{
             }
         }
         System.out.println("Goodbye!");
+    }
+
+    /** get history in and out info and return a linklist have all data
+     * @return LinkedList<history> , return null if no history exist
+     */
+    public static LinkedList<history> getInoutHistorybyid() {
+        LinkedList<history> historylist = new LinkedList<>();
+        Connection conn = null;
+        Statement stmt = null;
+        boolean noxiaoquExist = true;
+
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT\n" +
+                    "\t* \n" +
+                    "FROM\n" +
+                    "\tin_and_out , xiaoqu\n" +
+                    "WHERE\n" +
+                    "\tcitizen_id = '"+ Dataclass.qurey_citizenID+"' and\n" +
+                    "\tin_and_out.xiaoqu_id = xiaoqu.xiaoquID\n" +"ORDER BY"+
+                    "\taction_time DESC";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // 展开结果集数据库
+            while(rs.next()){
+                System.out.println("you data");
+                // 通过字段检索
+                Long xiaoqu_id = rs.getLong("xiaoqu_id");
+                String citizen_id = rs.getString("citizen_id");
+                String xiaoqu_name = rs.getString("xiaoqu_name");
+                String action_time = rs.getString("action_time");
+                boolean in = rs.getBoolean("in");
+                boolean out = rs.getBoolean("out");
+                history hs = new history(citizen_id,xiaoqu_name,action_time,xiaoqu_id,in,out);
+                historylist.addLast(hs);
+                noxiaoquExist = false;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+        if (noxiaoquExist){
+            System.out.println("no history data");
+            return null;
+        }else
+            return historylist;
     }
 }

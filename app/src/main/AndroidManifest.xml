@@ -21,14 +21,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanOutputActivity"
-            android:label="@string/topBar_QRoutput"
-            android:parentActivityName=".HomeActivity"
+        <activity android:name=".ShowHistoryActivity"
+            android:label="@string/topBar_Showhistory"
+
             ></activity>
+        <activity
+            android:name=".ScanOutputActivity"
+            android:label="@string/topBar_QRoutput"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".ScanChooseActivity"
             android:label="@string/topBar_chooseQR"
-            android:parentActivityName=".HomeActivity"/>
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".activity_xiaoqu.MakeSureXiaoquActivity"
             android:label="@string/topBar_Mksure_xiaoqu" />

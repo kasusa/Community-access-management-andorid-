@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.kasusa.communityaccessmanagement.Adapter.xiaoquAdapter;
 import com.kasusa.communityaccessmanagement.R;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;

@@ -1,4 +1,4 @@
-package com.kasusa.communityaccessmanagement.activity_xiaoqu;
+package com.kasusa.communityaccessmanagement.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kasusa.communityaccessmanagement.R;
+import com.kasusa.communityaccessmanagement.activity_xiaoqu.MakeSureXiaoquActivity;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 import java.util.LinkedList;

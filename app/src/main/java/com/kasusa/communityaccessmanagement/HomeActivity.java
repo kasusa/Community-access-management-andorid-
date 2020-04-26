@@ -121,12 +121,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
     public void history(View view) {
-
+        Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ShowHistoryActivity.class));
     }
     public void management(View view) {
 
     }
     public void me(View view) {
+        Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MeActivity.class);
         startActivity(intent);
     }

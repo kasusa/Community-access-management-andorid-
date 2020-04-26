@@ -13,6 +13,7 @@
     <string name="topBar_Mksure_xiaoqu">确认小区</string>
     <string name="topBar_chooseQR">选择出入方向</string>
     <string name="topBar_QRoutput">信息录入结果</string>
+    <string name="topBar_Showhistory">出入记录</string>
 
 
 </resources>
