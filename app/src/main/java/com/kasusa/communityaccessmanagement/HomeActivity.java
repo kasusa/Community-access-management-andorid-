@@ -1,6 +1,7 @@
 package com.kasusa.communityaccessmanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -51,6 +53,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         registerReceiver(broadcast_reciever, new IntentFilter("finish"));
+
+//      根据当前用户类型决定是否显示"管理"卡片
+        CardView worker= findViewById(R.id.cardview_manage);
+        ((ViewGroup) worker.getParent()).removeView(worker);
     }
 
     /**
