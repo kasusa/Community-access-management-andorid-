@@ -5,6 +5,7 @@ import android.util.Log;
 import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
+import com.kasusa.communityaccessmanagement.datacls.Worker;
 import com.kasusa.communityaccessmanagement.datacls.history;
 import com.kasusa.communityaccessmanagement.datacls.xiaoqu;
 
@@ -505,5 +506,61 @@ public class MySQLutil{
             return null;
         }else
             return historylist;
+    }
+
+    /**
+     * get if the user is an worker(which can use management feature)
+     * if the user is a worker , then put info into Worker class */
+    public static void getWorkerInfo() {
+        Connection conn = null;
+        Statement stmt = null;
+        boolean isworker = false;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM worker,mangement WHERE worker_citizenid = '"+DataUserinfo.user_citizenID+"' and worker_management = managementID";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // 展开结果集数据库
+            while(rs.next()){
+                // 通过字段检索
+                Worker.worker_citizenid = rs.getString("worker_citizenid");
+                Worker.management_name = rs.getString("management_name");
+                Worker.worker_position = rs.getString("worker_position");
+
+                Worker.isworker = true;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
     }
 }

@@ -19,8 +19,10 @@ import android.widget.Toast;
 import com.kasusa.communityaccessmanagement.datacls.DataScan;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
+import com.kasusa.communityaccessmanagement.datacls.Worker;
 import com.kasusa.communityaccessmanagement.threads.Thread_GetXiaoquFromXiaoquID;
 import com.kasusa.communityaccessmanagement.threads.Thread_getHistoryList;
+import com.kasusa.communityaccessmanagement.threads.Thread_getworker;
 import com.kasusa.communityaccessmanagement.util.ping;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.common.Constant;
@@ -55,8 +57,31 @@ public class HomeActivity extends AppCompatActivity {
         registerReceiver(broadcast_reciever, new IntentFilter("finish"));
 
 //      根据当前用户类型决定是否显示"管理"卡片
-        CardView worker= findViewById(R.id.cardview_manage);
-        ((ViewGroup) worker.getParent()).removeView(worker);
+        getworkerinfo();
+        if(!Worker.isworker)
+        {
+            CardView worker= findViewById(R.id.cardview_manage);
+            ((ViewGroup) worker.getParent()).removeView(worker);
+        }
+    }
+
+    /**
+     * do sql and check if usercitizenid is in worker table
+     */
+    private void getworkerinfo() {
+        Worker.clear();
+        Log.println(Log.INFO,"meow","get worker info");
+        Dataclass.reset();
+        Thread_getworker t = new Thread_getworker();
+        t.start();
+        while (!Dataclass.threadDone) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.println(Log.INFO,"meow", Worker.tostatic_String());
     }
 
     /**
