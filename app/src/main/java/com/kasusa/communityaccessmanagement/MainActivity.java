@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             CheckNetWorkAndShow();
         }
 
-//        startActivity(new Intent(this, SelectXiaoquActivity.class));
+        startActivity(new Intent(this, PromoteActivity.class));
     }
 
     /**

@@ -14,6 +14,7 @@
     <string name="topBar_chooseQR">选择出入方向</string>
     <string name="topBar_QRoutput">信息录入结果</string>
     <string name="topBar_Showhistory">出入记录</string>
+    <string name="topBar_promote">提升权限</string>
 
 
 </resources>

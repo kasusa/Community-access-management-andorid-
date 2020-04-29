@@ -21,10 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowHistoryActivity"
-            android:label="@string/topBar_Showhistory"
-
+        <activity android:name=".PromoteActivity"
+            android:label="@string/topBar_promote"
             ></activity>
+        <activity
+            android:name=".ShowHistoryActivity"
+            android:label="@string/topBar_Showhistory" />
         <activity
             android:name=".ScanOutputActivity"
             android:label="@string/topBar_QRoutput"

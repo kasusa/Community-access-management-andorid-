@@ -1,15 +1,20 @@
 package com.kasusa.communityaccessmanagement.threads;
 
+import android.app.ProgressDialog;
+
 import com.kasusa.communityaccessmanagement.MySQLutil;
+import com.kasusa.communityaccessmanagement.PromoteActivity;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
+import com.kasusa.communityaccessmanagement.util.ShareContext;
 
-public class Thread_getworker implements Runnable {
+public class Thread_IsCitizenWorker implements Runnable {
     private Thread t;
 
     public void run() {
-        MySQLutil.getWorkerInfo(DataUserinfo.user_citizenID);
+        MySQLutil.query_citizen_is_worker_or_not(Dataclass.qurey_citizenID);
         Dataclass.threadDone();
+
     }
 
     public void start () {

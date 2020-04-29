@@ -511,7 +511,7 @@ public class MySQLutil{
     /**
      * get if the user is an worker(which can use management feature)
      * if the user is a worker , then put info into Worker class */
-    public static void getWorkerInfo() {
+    public static void getWorkerInfo(String id) {
         Connection conn = null;
         Statement stmt = null;
         boolean isworker = false;
@@ -527,7 +527,7 @@ public class MySQLutil{
             System.out.println(" 实例化Statement对象...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM worker,mangement WHERE worker_citizenid = '"+DataUserinfo.user_citizenID+"' and worker_management = managementID";
+            sql = "SELECT * FROM worker,mangement WHERE worker_citizenid = '"+id+"' and worker_management = managementID";
             ResultSet rs = stmt.executeQuery(sql);
 
             // 展开结果集数据库
@@ -539,6 +539,74 @@ public class MySQLutil{
 
                 Worker.isworker = true;
             }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }finally{
+            // 关闭资源
+            try{
+                if(stmt!=null) stmt.close();
+            }catch(SQLException se2){
+            }// 什么都不做
+            try{
+                if(conn!=null) conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+    }
+
+    /**
+     * 获得居民的姓名和是否为worker , 数据存入 Dataclass.qurey_...
+     * @param id 输入居民的身份证号
+     */
+    public static void query_citizen_is_worker_or_not(String id) {
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            // 注册 JDBC 驱动
+            Class.forName(JDBC_DRIVER);
+
+            // 打开链接
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            // 执行查询
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM citizen,worker WHERE citizenID = worker_citizenid and citizenID = '"+id+"'";
+            ResultSet rs = stmt.executeQuery(sql1);
+            boolean noresult = true;
+            // 展开结果集数据库
+            String name ="居民不存在";
+            String isworker ="否";
+            while(rs.next()){
+                // 通过字段检索
+                name = rs.getString("citizen_name");
+                isworker = "是";
+                noresult = false;
+            }
+            if (noresult){
+                String sql2 = "SELECT * FROM citizen WHERE citizenID = '"+id+"'";
+                rs = stmt.executeQuery(sql2);
+                while(rs.next()){
+                    name = rs.getString("citizen_name");
+                    isworker = "否";
+                }
+            }
+            System.out.println("居民姓名:"+name + " is worker : "+isworker);
+            Dataclass.qurey_name = name;
+            Dataclass.qurey_isworker = isworker;
+
+
             // 完成后关闭
             rs.close();
             stmt.close();
