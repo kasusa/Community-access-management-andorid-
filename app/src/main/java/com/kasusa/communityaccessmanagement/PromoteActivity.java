@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 import com.kasusa.communityaccessmanagement.threads.Thread_IsCitizenWorker;
+import com.kasusa.communityaccessmanagement.threads.Thread_Promote;
 import com.kasusa.communityaccessmanagement.util.ShareContext;
 import com.kasusa.communityaccessmanagement.util.citizenID;
 
@@ -23,6 +25,8 @@ public class PromoteActivity extends AppCompatActivity {
     TextView isworker;
     EditText editText_citizenid;
     Button button_query;
+    Button button_up;
+    Button button_down;
 
 
     @Override
@@ -33,9 +37,13 @@ public class PromoteActivity extends AppCompatActivity {
         isworker = findViewById(R.id.textView50);
         editText_citizenid = findViewById(R.id.editText12);
         button_query = findViewById(R.id.button9);
+        button_up = findViewById(R.id.button10);
+        button_down = findViewById(R.id.button11);
 
-        name.setText("暂时没有结果");
-        isworker.setText("暂时没有结果");
+        name.setText("");
+        isworker.setText("");
+        button_up.setEnabled(false);
+        button_down.setEnabled(false);
     }
 
     /**
@@ -46,27 +54,55 @@ public class PromoteActivity extends AppCompatActivity {
      * @param view
      */
     public void query_citizen(View view) {
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
-        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
-        progress.show();
+        button_up.setEnabled(false);
+        button_down.setEnabled(false);
 
         Dataclass.reset();
         Dataclass.qurey_citizenID = editText_citizenid.getText().toString();
         if(!citizenID.isIDNumber(Dataclass.qurey_citizenID)){
             Toast.makeText(this,"身份证不合法", Toast.LENGTH_SHORT).show();
+            name.setText("");
+            isworker.setText("");
         }else {
             Thread_IsCitizenWorker t = new Thread_IsCitizenWorker();
             t.start();
             while (!Dataclass.threadDone) {
                     SystemClock.sleep(500);
             }
+            // 换个颜色给人醒目的感觉...
+            name.setTextColor(Color.parseColor("#0d86ff"));
+            name.setTextColor(Color.parseColor("#0d86ff"));
             name.setText(Dataclass.qurey_name);
             isworker.setText(Dataclass.qurey_isworker);
         }
-        progress.dismiss();
-
+        // 判断应该启动的按钮.
+        if(Dataclass.qurey_isworker.equals("是")){
+            button_down.setEnabled(true);
+        }else
+            button_up.setEnabled(true);
     }
 
+    public void button_up(View view) {
+        Dataclass.reset();
+        Dataclass.qurey_citizenID = editText_citizenid.getText().toString();
+        Dataclass.qurey_Promote = true;
+        Thread_Promote t = new Thread_Promote();
+        t.start();
+        while (!Dataclass.threadDone)
+            SystemClock.sleep(500);
+        Toast.makeText(this,"操作成功.", Toast.LENGTH_SHORT).show();
+        button_query.callOnClick();
+    }
+
+    public void button_down(View view) {
+        Dataclass.reset();
+        Dataclass.qurey_citizenID = editText_citizenid.getText().toString();
+        Dataclass.qurey_Promote = false;
+        Thread_Promote t = new Thread_Promote();
+        t.start();
+        while (!Dataclass.threadDone)
+            SystemClock.sleep(500);
+        Toast.makeText(this,"操作成功.", Toast.LENGTH_SHORT).show();
+        button_query.callOnClick();
+    }
 }

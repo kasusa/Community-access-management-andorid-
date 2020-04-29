@@ -631,4 +631,54 @@ public class MySQLutil{
         }
         System.out.println("Goodbye!");
     }
+
+    /** 通过居民的 身份证号码选定,然后升级或者降级
+     * @param id citizenid
+     * @param ispromote is promote or is depromote
+     */
+    public static void Promote(String id, boolean ispromote) {
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql1 = "INSERT into `worker` (worker_citizenid , worker_management , worker_position)\n" +
+                    "VALUES\n" +
+                    "('" + id + "',1,'default position')";
+            String sql2 = "DELETE FROM worker WHERE worker_citizenid = '" + id + "'";
+
+            if (ispromote) {
+                stmt.executeUpdate(sql1);
+                System.out.println("xxx已升级worker");
+            } else {
+                stmt.execute(sql2);
+                System.out.println("xxx已降级citizen");
+
+            }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        } catch (Exception e) {
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        } finally {
+            // 关闭资源
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se2) {
+            }// 什么都不做
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        System.out.println("Goodbye!");
+    }
 }

@@ -1,15 +1,13 @@
 package com.kasusa.communityaccessmanagement.threads;
 
 import com.kasusa.communityaccessmanagement.MySQLutil;
-
 import com.kasusa.communityaccessmanagement.datacls.Dataclass;
 
-
-public class Thread_IsCitizenWorker implements Runnable {
+public class Thread_Promote implements Runnable {
     private Thread t;
 
     public void run() {
-        MySQLutil.query_citizen_is_worker_or_not(Dataclass.qurey_citizenID);
+        MySQLutil.Promote(Dataclass.qurey_citizenID,Dataclass.qurey_Promote);
         Dataclass.threadDone();
 
     }

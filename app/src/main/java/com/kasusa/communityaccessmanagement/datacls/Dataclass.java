@@ -15,6 +15,7 @@ public class Dataclass {
     public static String qurey_citizenID = "";
     public static String qurey_name = "";
     public static String qurey_isworker = "";
+    public static boolean qurey_Promote = false;
 
 
     public static void reset(){
@@ -30,6 +31,7 @@ public class Dataclass {
 
         qurey_name = "";
         qurey_isworker = "";
+        qurey_Promote = false;
     }
     public static void threadDone(){
         threadDone = true;

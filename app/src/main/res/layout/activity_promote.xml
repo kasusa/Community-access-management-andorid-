@@ -66,6 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
     <Button
+        android:onClick="button_up"
         android:id="@+id/button10"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,6 +79,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:onClick="button_down"
         android:id="@+id/button11"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
