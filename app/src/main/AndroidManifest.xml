@@ -21,9 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PromoteActivity"
-            android:label="@string/topBar_promote"
-            ></activity>
+        <activity android:name=".GenQRActivity"></activity>
+        <activity android:name=".ListGenQrActivity" />
+        <activity
+            android:name=".WorkerActivity"
+            android:label="@string/topBar_worker" />
+        <activity
+            android:name=".PromoteActivity"
+            android:label="@string/topBar_promote" />
         <activity
             android:name=".ShowHistoryActivity"
             android:label="@string/topBar_Showhistory" />

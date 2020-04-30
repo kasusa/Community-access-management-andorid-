@@ -176,6 +176,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     public void management(View view) {
+        startActivity(new Intent(this, Worker.class));
 
     }
     public void me(View view) {

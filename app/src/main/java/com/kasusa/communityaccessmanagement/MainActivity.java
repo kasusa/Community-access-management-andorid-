@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.kasusa.communityaccessmanagement.activity_Login.LoginActivity;
 import com.kasusa.communityaccessmanagement.activity_xiaoqu.SelectXiaoquActivity;
 import com.kasusa.communityaccessmanagement.datacls.DataUserinfo;
+import com.kasusa.communityaccessmanagement.datacls.Worker;
 import com.kasusa.communityaccessmanagement.util.ping;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             CheckNetWorkAndShow();
         }
 
-        startActivity(new Intent(this, PromoteActivity.class));
+        startActivity(new Intent(this, WorkerActivity.class));
     }
 
     /**
