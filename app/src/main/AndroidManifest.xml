@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kasusa.communityaccessmanagement">
+    package="com.kasusa.communityaccessmanagement" >
     <!-- mysql need -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- qrcode need -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -20,8 +20,10 @@
         android:label="@string/topBar_welcome"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".GenQRActivity"></activity>
+        android:theme="@style/AppTheme" >
+        <activity android:name=".FindHistoryByidActivity" >
+        </activity>
+        <activity android:name=".GenQRActivity" />
         <activity android:name=".ListGenQrActivity" />
         <activity
             android:name=".WorkerActivity"
@@ -69,7 +71,7 @@
         <activity
             android:name=".activity_Login.LoginActivity"
             android:label="@string/topBar_login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
