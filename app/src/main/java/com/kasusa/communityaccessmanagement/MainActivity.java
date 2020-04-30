@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             CheckNetWorkAndShow();
         }
 
-        startActivity(new Intent(this, WorkerActivity.class));
+//        startActivity(new Intent(this, WorkerActivity.class));
     }
 
     /**

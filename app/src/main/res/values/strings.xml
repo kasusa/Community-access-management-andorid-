@@ -5,7 +5,7 @@
     <string name="topBar_login">输入您的身份证号</string>
     <string name="topBar_login_pwd">输入您的密码</string>
     <string name="topBar_Home">居民出入管理</string>
-    <string name="topBar_me">我的信息</string>
+    <string name="topBar_me">个人信息</string>
     <string name="topBar_register1">必填信息</string>
     <string name="topBar_register2">可选信息</string>
     <string name="topBar_findpwd">找回密码</string>
@@ -16,6 +16,7 @@
     <string name="topBar_Showhistory">出入记录</string>
     <string name="topBar_promote">提升权限</string>
     <string name="topBar_worker">管理功能</string>
+    <string name="topBar_findhistory">通过身份证查寻出入历史</string>
 
 
 </resources>

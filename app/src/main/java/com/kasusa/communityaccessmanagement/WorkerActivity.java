@@ -17,6 +17,8 @@ public class WorkerActivity extends AppCompatActivity {
     }
 
     public void search_card(View view) {
+        startActivity(new Intent(this, FindHistoryByidActivity.class));
+
     }
 
     public void card_gen_qr(View view) {

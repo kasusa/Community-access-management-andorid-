@@ -21,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".FindHistoryByidActivity" >
+        <activity android:name=".FindHistoryByidActivity"
+            android:label="@string/topBar_findhistory"
+            >
         </activity>
         <activity android:name=".GenQRActivity" />
         <activity android:name=".ListGenQrActivity" />
@@ -60,8 +62,7 @@
             android:label="@string/topBar_register1" />
         <activity
             android:name=".MeActivity"
-            android:label="@string/topBar_me"
-            android:parentActivityName=".HomeActivity" />
+            android:label="@string/topBar_me" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/topBar_Home" />

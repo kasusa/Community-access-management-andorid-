@@ -180,6 +180,8 @@ public class HomeActivity extends AppCompatActivity {
 
     }
     public void me(View view) {
+        //会使用dataclass的id进行meactivity的初始化
+        Dataclass.qurey_citizenID = DataUserinfo.user_citizenID;
         Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MeActivity.class);
         startActivity(intent);
