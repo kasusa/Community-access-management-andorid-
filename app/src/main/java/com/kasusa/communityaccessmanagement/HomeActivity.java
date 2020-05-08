@@ -159,7 +159,7 @@ public class HomeActivity extends AppCompatActivity {
         //show current user's history on default
         String id = DataUserinfo.user_citizenID;
         dosql_getHistoryList(id);
-        Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"正在查询,稍等", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, ShowHistoryActivity.class));
     }
     private void dosql_getHistoryList(String id) {

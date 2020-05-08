@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Community access management</string>
 
-    <string name="topBar_welcome">居民出入管理</string>
+    <string name="topBar_welcome">行通</string>
     <string name="topBar_login">输入您的身份证号</string>
     <string name="topBar_login_pwd">输入您的密码</string>
     <string name="topBar_Home">居民出入管理</string>
