@@ -18,9 +18,9 @@ public class MySQLutil{
 
     //    ip :123.56.18.36
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://123.56.18.36:3306/andorid-2020-spring?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8";
-    static final String USER = "root";
-    static final String PASS = "Jinghaoyang1";
+    static final String DB_URL = "jdbc:mysql://49.235.50.24:3306/chuxing?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8";
+    static final String USER = "test";
+    static final String PASS = "123456";
 
 
     /**
